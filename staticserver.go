@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -90,12 +91,14 @@ func StaticServer(w http.ResponseWriter, r *http.Request) {
 }
 
 func check(name string) bool {
-	ext := []string{".exe", ".js", ".png"}
-
+	// ext := []string{".exe", ".js", ".png"}
+	ext := []string{".jpg", ".jpeg", ".png", ".gif", ".bmp", ".zip", ".rar", ".gz", ".bz2", ".7z", ".pdf"}
 	for _, v := range ext {
-		if v == name {
-			return false
+		if strings.EqualFold(name, v) {
+			return true
 		}
 	}
-	return true
+	
+	return false
 }
+
